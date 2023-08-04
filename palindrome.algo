@@ -1,0 +1,39 @@
+FUNCTION substring(word : STRING, i : INTEGER, l : INTEGER) : STRING
+VAR
+    j := INTEGER;
+BEGIN
+    FOR j FROM 0 TO i  DO
+        word[j] := '';
+    END_FOR
+    FOR j FROM l TO word.length-1  DO
+        word[j] := '';
+    END_FOR
+    return word;
+END
+
+FUNCTION isPalindrome(word : STRING) : BOOLEAN
+VAR
+    l: INTEGER;
+BEGIN
+    l := word.length ;
+    IF (l = 0 OR l = 1) THEN
+        return true;
+    END_IF
+    IF (word[0] <> word[l-1]) THEN
+        return false;
+    ELSE
+        return isPalindrome(substring(word, 1 , l-2));
+    END_IF
+END
+
+ALGORITHM palindrome
+VAR
+    word : STRING;
+BEGIN
+    Read(word);
+    IF (isPalindrome(word)) THEN
+        Write("Palindrome");
+    ELSE
+        Write("Not Palindrome");    
+    END_IF
+END
